@@ -15,6 +15,8 @@ const SignUpView = lazy(() =>
 
 const UserLogin = lazy(() => import('../../views/LoginView'));
 
+const UserMenu = lazy(() => import('../../components/UserMenu/UserMenu'));
+
 export default function App() {
   return (
     <Suspense fallback={<Loader />}>
@@ -22,15 +24,13 @@ export default function App() {
         <Container>
           <AppBar />
           <Switch>
-            <Route path="/" exact>
-              <HomeView />
-            </Route>
-            <Route path="/signup">
-              <SignUpView />
-            </Route>
-            <Route path="/login">
-              <UserLogin />
-            </Route>
+            <Route exact path="/" component={HomeView} />
+
+            <Route path="/signup" component={SignUpView} />
+
+            <Route path="/login" component={UserLogin} />
+
+            <Route path="/menu" component={UserMenu} />
           </Switch>
         </Container>
       </div>
