@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import s from './UserLogin.module.css';
 
 export default function UserLogin() {
   const [email, setEmail] = useState('');
@@ -28,12 +29,25 @@ export default function UserLogin() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={s.input__form}>
       <label>
-        <span>Email</span>
-        <input type="text" name="email" required onChange={handleChange} />
-        <span>Password</span>
-        <input type="text" name="singup" onChange={handleChange} />
+        <span className={s.input__title}>Email</span>
+        <input
+          type="text"
+          name="email"
+          required
+          value={email}
+          onChange={handleChange}
+          className={s.input__name}
+        />
+        <span className={s.input__title}>Password</span>
+        <input
+          type="text"
+          name="singup"
+          value={password}
+          onChange={handleChange}
+          className={s.input__name}
+        />
       </label>
       <button type="submit">Login</button>
     </form>
