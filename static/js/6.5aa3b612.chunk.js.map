@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/UserMenu/UserMenu.js"],"names":["UserMenu"],"mappings":"0MAAe,SAASA,IACtB,OACE,mCACE","file":"static/js/6.5aa3b612.chunk.js","sourcesContent":["export default function UserMenu() {\r\n  return (\r\n    <>\r\n      <span>`Welcome, Friend!`</span>\r\n    </>\r\n  );\r\n}\r\n"],"sourceRoot":""}
