@@ -29,18 +29,18 @@ const UserMenu = lazy(() =>
 
 export default function App() {
   return (
-    <Suspense fallback={<Loader />}>
-      <div className="Container">
-        <Container>
-          <AppBar />
+    <div className="Container">
+      <AppBar />
+      <Container>
+        <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact path="/" component={HomeView} />
             <Route path="/signup" component={SignUpView} />
             <Route path="/login" component={LoginView} />
             <Route path="/menu" component={UserMenu} />
           </Switch>
-        </Container>
-      </div>
-    </Suspense>
+        </Suspense>
+      </Container>
+    </div>
   );
 }

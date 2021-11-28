@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signUp } from '../../redux/auth/auth-operations';
+import { register } from '../../redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
 import s from './UserRegister.module.css';
 
@@ -30,7 +30,7 @@ export default function UserRegister() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(signUp({ name, email, password }));
+    dispatch(register({ name, email, password }));
 
     setName('');
     setEmail('');

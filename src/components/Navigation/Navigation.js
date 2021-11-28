@@ -12,17 +12,6 @@ const Navigation = () => {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/signup"
-        className={s.navLink}
-        activeClassName={s.activeLink}
-      >
-        SignUp
-      </NavLink>
-      <NavLink to="/login" className={s.navLink} activeClassName={s.activeLink}>
-        LogIn
-      </NavLink>
-
       <hr />
     </nav>
   );

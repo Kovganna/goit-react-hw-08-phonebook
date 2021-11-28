@@ -1,9 +1,5 @@
-const getIsLoggedIn = state => state.auth.gisLoggedIn;
+export const getIsLoggedIn = state => state.auth.isLoggedIn;
 
-const getUserName = state => state.auth.user.name;
+export const getUserName = state => state.auth.user.name;
 
-const authSelectors = {
-  getIsLoggedIn,
-  getUserName,
-};
-export default authSelectors;
+export const getIsFetchCurrentUser = state => state.auth.isGetCurrentUser;
