@@ -17,6 +17,7 @@ export default function UserLogin() {
       case 'password':
         setPassword(value);
         break;
+
       default:
         return;
     }
@@ -32,27 +33,30 @@ export default function UserLogin() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={s.input__form}>
-      <label>
-        <span className={s.input__title}>Email</span>
-        <input
-          type="text"
-          name="email"
-          required
-          value={email}
-          onChange={handleChange}
-          className={s.input__name}
-        />
-        <span className={s.input__title}>Password</span>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          className={s.input__name}
-        />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+    <div className={s.contact__form}>
+      <h1>LogIn please!</h1>
+      <form onSubmit={handleSubmit} className={s.input__form}>
+        <label>
+          <span className={s.input__title}>Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            value={email}
+            onChange={handleChange}
+            className={s.input__name}
+          />
+          <span className={s.input__title}>Password</span>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            className={s.input__name}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
