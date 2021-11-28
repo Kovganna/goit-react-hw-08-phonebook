@@ -1,4 +1,4 @@
-import UserRegister from '../components/UserRegister/UserRegister';
+import UserRegister from '../../components/UserRegister/UserRegister';
 import { Route, Switch } from 'react-router';
 import { Suspense } from 'react';
 import Loader from 'react-loader-spinner';

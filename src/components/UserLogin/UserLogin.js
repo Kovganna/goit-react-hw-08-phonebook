@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../redux/auth/auth-operations';
 import s from './UserLogin.module.css';
 
 export default function UserLogin() {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,10 +23,10 @@ export default function UserLogin() {
   };
 
   const handleSubmit = e => {
-    e.preventdefault();
-    reset();
-  };
-  const reset = () => {
+    e.preventDefault();
+
+    dispatch(logIn({ email, password }));
+
     setEmail('');
     setPassword('');
   };
@@ -42,8 +45,8 @@ export default function UserLogin() {
         />
         <span className={s.input__title}>Password</span>
         <input
-          type="text"
-          name="singup"
+          type="password"
+          name="password"
           value={password}
           onChange={handleChange}
           className={s.input__name}

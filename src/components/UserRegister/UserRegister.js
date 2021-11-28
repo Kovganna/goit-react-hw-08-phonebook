@@ -1,8 +1,10 @@
 import { useState } from 'react';
-
+import { signUp } from '../../redux/auth/auth-operations';
+import { useDispatch } from 'react-redux';
 import s from './UserRegister.module.css';
 
 export default function UserRegister() {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +30,8 @@ export default function UserRegister() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    reset();
-  };
-  const reset = () => {
+    dispatch(signUp({ name, email, password }));
+
     setName('');
     setEmail('');
     setPassword('');
@@ -38,8 +39,12 @@ export default function UserRegister() {
 
   return (
     <div className={s.contact__form}>
-      <h1>Signup please!</h1>
-      <form onSubmit={handleSubmit} className={s.contact_form}>
+      <h1>SignUp please!</h1>
+      <form
+        onSubmit={handleSubmit}
+        className={s.contact_form}
+        autoComplete="off"
+      >
         <label>
           <span className={s.input__title}>Name</span>
           <input
@@ -52,7 +57,7 @@ export default function UserRegister() {
           />
           <span className={s.input__title}>Email</span>
           <input
-            type="text"
+            type="email"
             name="email"
             className={s.input__name}
             required
@@ -61,7 +66,7 @@ export default function UserRegister() {
           />
           <span className={s.input__title}>Password</span>
           <input
-            type="text"
+            type="password"
             name="password"
             className={s.input__name}
             required

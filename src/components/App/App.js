@@ -7,15 +7,25 @@ import Container from '../Container/Container';
 import './App.css';
 
 const HomeView = lazy(() =>
-  import('../../views/HomeView' /* webpackChunkName: "home-view" */),
+  import('../../views/HomeView/HomeView' /* webpackChunkName: "home-view" */),
 );
 const SignUpView = lazy(() =>
-  import('../../views/SignUpView' /* webpackChunkName: "sign-up-view" */),
+  import(
+    '../../views/SignUpView/SignUpView' /* webpackChunkName: "sign-up-view" */
+  ),
 );
 
-const UserLogin = lazy(() => import('../../views/LoginView'));
+const LoginView = lazy(() =>
+  import(
+    '../../views/LoginView/LoginView' /* webpackChunkName: "login-view" */
+  ),
+);
 
-const UserMenu = lazy(() => import('../../components/UserMenu/UserMenu'));
+const UserMenu = lazy(() =>
+  import(
+    '../../components/UserMenu/UserMenu' /* webpackChunkName: "user-menu" */
+  ),
+);
 
 export default function App() {
   return (
@@ -25,11 +35,8 @@ export default function App() {
           <AppBar />
           <Switch>
             <Route exact path="/" component={HomeView} />
-
             <Route path="/signup" component={SignUpView} />
-
-            <Route path="/login" component={UserLogin} />
-
+            <Route path="/login" component={LoginView} />
             <Route path="/menu" component={UserMenu} />
           </Switch>
         </Container>
