@@ -12,6 +12,14 @@ const Navigation = () => {
       >
         Home
       </NavLink>
+      <NavLink
+        exact
+        to="/contacts"
+        className={s.navLink}
+        activeClassName={s.activeLink}
+      >
+        Phonebook
+      </NavLink>
       <hr />
     </nav>
   );

@@ -51,6 +51,8 @@ export default function UserLogin() {
             value={password}
             onChange={handleChange}
             className={s.input__name}
+            // pattern="((?=.d)(?=.[a-z])(?=.[A-Z])(?=.[@#$%]).{8,20})"
+            minLength="7"
           />
         </label>
         <button type="submit">Login</button>

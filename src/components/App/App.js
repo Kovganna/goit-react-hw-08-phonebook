@@ -3,6 +3,9 @@ import { lazy, Suspense } from 'react';
 import Loader from 'react-loader-spinner';
 import AppBar from '../AppBar/AppBar';
 import Container from '../Container/Container';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 
 import './App.css';
 
@@ -21,13 +24,19 @@ const LoginView = lazy(() =>
   ),
 );
 
-const UserMenu = lazy(() =>
+const PhoneView = lazy(() =>
   import(
-    '../../components/UserMenu/UserMenu' /* webpackChunkName: "user-menu" */
+    '../../views/PhoneView/PhoneView' /* webpackChunkName: "phone-view" */
   ),
 );
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <div className="Container">
       <AppBar />
@@ -35,9 +44,9 @@ export default function App() {
         <Suspense fallback={<Loader />}>
           <Switch>
             <Route exact path="/" component={HomeView} />
+            <Route path="/contacts" component={PhoneView} />
             <Route path="/signup" component={SignUpView} />
             <Route path="/login" component={LoginView} />
-            <Route path="/menu" component={UserMenu} />
           </Switch>
         </Suspense>
       </Container>

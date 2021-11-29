@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-const BASE_URL = 'https://connections-api.herokuapp.com';
+export const BASE_URL = 'https://connections-api.herokuapp.com';
 
 const token = {
   set(token) {
@@ -49,6 +47,26 @@ export const logOut = createAsyncThunk(
     try {
       await axios.post(`${BASE_URL}/users/logout`);
       token.unset();
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  },
+);
+
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI, { rejectWithValue }) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (token === '') {
+      console.log('No token');
+      return;
+    }
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
     } catch (error) {
       rejectWithValue(error);
     }
