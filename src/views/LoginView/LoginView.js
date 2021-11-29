@@ -1,4 +1,4 @@
-import UserLogin from '../../components/UserLogin/UserLogin';
+import UserLogin from '../../components/UserLogin';
 
 export default function LoginView() {
   return (

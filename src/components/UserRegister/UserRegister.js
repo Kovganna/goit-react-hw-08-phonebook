@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { register } from '../../redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
+
 import s from './UserRegister.module.css';
 
 export default function UserRegister() {
@@ -9,18 +10,16 @@ export default function UserRegister() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
-        setName(value);
-        break;
+        return setName(value);
+
       case 'email':
-        setEmail(value);
-        break;
+        return setEmail(value);
+
       case 'password':
-        setPassword(value);
-        break;
+        return setPassword(value);
 
       default:
         return;

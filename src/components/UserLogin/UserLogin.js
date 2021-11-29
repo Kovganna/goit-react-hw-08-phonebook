@@ -8,15 +8,13 @@ export default function UserLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
-        setEmail(value);
-        break;
+        return setEmail(value);
+
       case 'password':
-        setPassword(value);
-        break;
+        return setPassword(value);
 
       default:
         return;
