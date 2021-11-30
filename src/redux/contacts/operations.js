@@ -27,32 +27,33 @@ export const fetchContacts = createAsyncThunk(
   },
 );
 
-export const removeContact = createAsyncThunk(
-  'contacts/removeContact',
-  async (contactId, { rejectWithValue }) => {
-    try {
-      const {
-        data: { id },
-      } = await axios.delete(`/contacts/${contactId}`);
-      return id;
-    } catch (error) {
-      rejectWithValue(error.message);
-    }
-  },
-);
-
 // export const removeContact = createAsyncThunk(
 //   'contacts/removeContact',
 //   async (contactId, { rejectWithValue }) => {
+//     console.log(contactId);
 //     try {
-//       const response = await axios.delete(`/contacts/${contactId}`);
-//       if (response.status === 200) {
-//         return contactId;
-//       } else {
-//         throw new Error({ message: 'error' });
-//       }
+//       const {
+//         data: { id },
+//       } = await axios.delete(`/contacts/${contactId}`);
+//       return contactId;
 //     } catch (error) {
 //       rejectWithValue(error.message);
 //     }
 //   },
 // );
+
+export const removeContact = createAsyncThunk(
+  'contacts/removeContact',
+  async (contactId, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/contacts/${contactId}`);
+      if (response.status === 200) {
+        return contactId;
+      } else {
+        throw new Error({ message: 'error' });
+      }
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  },
+);

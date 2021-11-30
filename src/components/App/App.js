@@ -6,7 +6,9 @@ import Container from '../Container/Container';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
-import { getIsFetchingCurrentUser } from '../../redux/auth/auth-selectors';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getIsFetchCurrentUser } from '../../redux/auth/auth-selectors';
 
 import './App.css';
 import PrivateRoute from '../PrivatRoute/PrivatRoute';
@@ -35,35 +37,36 @@ const PhoneView = lazy(() =>
 
 export default function App() {
   const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
+  const isFetchCurrentUser = useSelector(getIsFetchCurrentUser);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  return (
-    !isFetchingCurrentUser && (
-      <div className="Container">
-        <AppBar />
-        <Container>
-          <Suspense fallback={<Loader />}>
-            <Switch>
-              <PublicRoute exact path="/">
-                <HomeView />
-              </PublicRoute>
-              <PrivateRoute path="/contacts" redirectTo="/login">
-                <PhoneView />
-              </PrivateRoute>
-              <PublicRoute exact path="/signup" restricted>
-                <SignUpView />
-              </PublicRoute>
-              <PublicRoute exact path="/login" restricted>
-                <LoginView />
-              </PublicRoute>
-            </Switch>
-          </Suspense>
-        </Container>
-      </div>
-    )
+  return !isFetchCurrentUser ? (
+    <Loader />
+  ) : (
+    <div className="Container">
+      <AppBar />
+      <Container>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <PublicRoute exact path="/">
+              <HomeView />
+            </PublicRoute>
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <PhoneView />
+            </PrivateRoute>
+            <PublicRoute exact path="/signup" restricted>
+              <SignUpView />
+            </PublicRoute>
+            <PublicRoute exact path="/login" restricted>
+              <LoginView />
+            </PublicRoute>
+          </Switch>
+        </Suspense>
+      </Container>
+      <ToastContainer />
+    </div>
   );
 }

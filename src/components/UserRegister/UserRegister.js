@@ -31,6 +31,16 @@ export default function UserRegister() {
 
     dispatch(register({ name, email, password }));
 
+    // const allReadyPresentUser = contacts.find(
+    //   elem => elem.name.toLowerCase() === name.toLowerCase(),
+    // );
+
+    // if (allReadyPresentContact) {
+    //   alert(`${name} is already in contacts.`);
+    // } else {
+    //   dispatch(addContact({ name, number }));
+    // }
+
     setName('');
     setEmail('');
     setPassword('');

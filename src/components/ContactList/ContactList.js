@@ -15,10 +15,10 @@ export default function ContactList() {
   return (
     <div>
       <ul className="contact-list">
-        {contacts.map(({ name, phone, id }) => (
+        {contacts.map(({ name, number, id }) => (
           <li key={id} className={s.contact__item}>
             <p className={s.item}>{name}:</p>
-            <p className={s.item}>{phone}</p>
+            <p className={s.item}>{number}</p>
             <button
               key={id}
               type="button"
