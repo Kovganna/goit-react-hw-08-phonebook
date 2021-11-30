@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 
 import './App.css';
+import PrivateRoute from '../PrivatRoute/PrivatRoute';
+import PublicRoute from '../PublicRoute/PublicRoute';
 
 const HomeView = lazy(() =>
   import('../../views/HomeView/HomeView' /* webpackChunkName: "home-view" */),
@@ -43,10 +45,20 @@ export default function App() {
       <Container>
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route exact path="/" component={HomeView} />
-            <Route path="/contacts" component={PhoneView} />
-            <Route path="/signup" component={SignUpView} />
-            <Route path="/login" component={LoginView} />
+            <PublicRoute exact path="/">
+              <HomeView />
+            </PublicRoute>
+
+            <PrivateRoute path="/contacts">
+              <PhoneView />
+            </PrivateRoute>
+
+            <PublicRoute exact path="/signup" restricted>
+              <SignUpView />
+            </PublicRoute>
+            <PublicRoute exact path="/login" restricted>
+              <LoginView />
+            </PublicRoute>
           </Switch>
         </Suspense>
       </Container>
